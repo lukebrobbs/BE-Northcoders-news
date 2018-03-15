@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>NorthCoders news API</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
+</head>
+
+<body>
+  <div class="header">
+    <img class="Logo" src="https://northcoders.com/images/logos/learn_to_code_manchester_rw_second.png">
+  </div>
+  <h2 class="subheading">Welcome to the Northcoders news API. The following endpoints are available:</h2>
+  <div class="body">
+    <a href="/api/topics">
+      <h2>GET /api/topics</h2>
+    </a>
+    <p>Get all the topics</p>
+    <h2>GET /api/topics/:topic/articles</h2>
+    <p>Return all the articles for a certain topic</p>
+    <h2>GET /api/articles</h2>
+    <p>Returns all the articles</p>
+    <h2>GET /api/articles/:article_id/comments</h2>
+    <p>Get all the comments for a individual article</p>
+    <h2>POST /api/articles/:article_id/comments</h2>
+    <p>Add a new comment to an article. This route requires a JSON body with a comment key and value pair e.g: {"comment": "This
+      is my new comment"}</p>
+    <h2>PUT /api/articles/:article_id</h2>
+    <p>Increment or Decrement the votes of an article by one. This route requires a vote query of 'up' or 'down' e.g: http://northcoders-news-api.herokuapp.com/api/articles/:article_id?vote=up</p>
+    <h2>PUT /api/comments/:comment_id</h2>
+    <p>Increment or Decrement the votes of a comment by one. This route requires a vote query of 'up' or 'down' e.g: http://northcoders-news-api.herokuapp.com/api/comments/:comment_id?vote=down</p>
+    <h2>DELETE /api/comments/:comment_id</h2>
+    <p>Deletes a comment if the comment was created by the Northcoder user</p>
+    <h2>GET /api/users/:username</h2>
+    <p>Returns a JSON object with the profile data for the specified user.</p>
+    <h2>GET /api/users/:username/repos</h2>
+    <p>Returns a JSON array with all the public repos of the specified user.</p>
+  </div>
+</body>
+
+</html>

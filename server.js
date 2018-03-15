@@ -16,6 +16,7 @@ mongoose
 
 app.use(bodyParser.json());
 
+app.use(express.static("public"));
 app.use("/api", apiRouter);
 
 app.use("/*", (req, res) => {
