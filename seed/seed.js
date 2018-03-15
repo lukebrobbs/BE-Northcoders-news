@@ -6,6 +6,7 @@ mongoose.Promise = Promise;
 const fs = require("fs");
 const parse = require("csv-parse");
 const { promisify } = require("util");
+const commentsData = require("./data/comments");
 
 function parseData(path) {
   const promiseReadFile = promisify(fs.readFile);
@@ -15,13 +16,22 @@ function parseData(path) {
   );
 }
 
+function generateRandom(obj, str) {
+  const keys = Object.keys(obj);
+  const values = Object.values(obj);
+  const randomNum = Math.floor(Math.random() * keys.length);
+  if (str === "key") return keys[randomNum];
+  if (str === "value") return values[randomNum];
+  return undefined;
+}
+
 function seedTopics(topicPath) {
   return parseData(topicPath)
     .then(topicData => Topics.insertMany(topicData))
     .then(newTopic => {
       const ids = {};
       newTopic.forEach(topic => {
-        ids[topic.title] = topic._id;
+        ids[topic.slug] = topic._id;
       });
       return ids;
     });
@@ -39,13 +49,35 @@ function seedUsers(userPath) {
     });
 }
 
-// function seedArticles(articlePath) {
-//   return parseData(articlePath).then(articleData => {
-//     articleData.map(article => {
-//       const {title, body, votes,}
-//     })
-//   })
-// }
+function seedArticles(articlePath, userId, topicId) {
+  return parseData(articlePath).then(articleData => {
+    const mappedArticles = articleData.map(article => {
+      const { title, body, topic: belongs_to, votes, created_by } = article;
+      const randomUser = generateRandom(userId, "key");
+      article.created_by = userId[randomUser];
+      article.belongs_to = topicId[article.topic];
+      return article;
+    });
+    return Articles.insertMany(mappedArticles).then(articles => {
+      const ids = {};
+      articles.forEach(article => {
+        ids[article.title] = article._id;
+      });
+      return ids;
+    });
+  });
+}
+
+function seedComments(articleId, userId) {
+  const articleIds = Object.entries(articleId);
+  const userIds = Object.entries(userId);
+  const completeComments = commentsData.map(comment => {
+    comment.belongs_to = generateRandom(articleId, "value");
+    comment.created_by = generateRandom(userId, "value");
+    return comment;
+  });
+  return Comments.insertMany(completeComments);
+}
 
 // This should seed your development database using the CSV file data
 // Feel free to use the async library, or native Promises, to handle the asynchronicity of the seeding operations.
@@ -63,10 +95,21 @@ function seedDatabase() {
     })
     .then(userIds => {
       console.log("Users collection created 👥");
-      return seedTopics(__dirname + "/data/topics.csv");
+      return Promise.all([userIds, seedTopics(__dirname + "/data/topics.csv")]);
     })
-    .then(topicIds => {
+    .then(([userIds, topicIds]) => {
       console.log("Topic collection created! 🔖");
+      return Promise.all([
+        userIds,
+        seedArticles(__dirname + "/data/articles.csv", userIds, topicIds)
+      ]);
+    })
+    .then(([userIds, articleIds]) => {
+      console.log("Articles collection created! 📖");
+      return seedComments(articleIds, userIds);
+    })
+    .then(() => {
+      console.log("Comments collection seeded 🗣");
     })
     .then(() => {
       console.log("Database seeded! 🌱");
