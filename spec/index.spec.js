@@ -3,8 +3,10 @@ const { expect } = require("chai");
 const request = require("supertest")(app);
 const mongoose = require("mongoose");
 const user = require("../models/users");
+const comments = require("../models/comments");
 let articleId;
 let commentId;
+let userid;
 
 describe("/api", () => {
   describe("/topics", () => {
@@ -111,18 +113,48 @@ describe("/api", () => {
           });
       });
     });
-    xdescribe("/comment_id", () => {
-      it("DELETE request should ", () => {});
+    describe("/comment_id", () => {
+      it("DELETE request should return status 200 along with a JSON object with the deleted user", () => {
+        return request
+          .delete(`/api/comments/${commentId}`)
+          .expect(200)
+          .then(res => {
+            expect(res.body).to.be.an("object");
+            expect(res.body.message.length).to.be.greaterThan(0);
+          });
+      });
+      it("DELETE should sucessfully remove an item from the database", () => {
+        comments
+          .find()
+          .count()
+          .then(count => {
+            expect(count).to.equal(50);
+          });
+      });
     });
   });
   describe("/users", () => {
     it("GET request should return status 200, along with an object containing all users", () => {
       return request
-        .put("/api/users")
+        .get("/api/users")
         .expect(200)
         .then(res => {
           expect(res.body).to.be.an("object");
+          expect(res.body.users.length).to.equal(1);
+          expect(res.body.users[0].name).to.equal("Tom Tickle");
+          userid = res.body.users[0]._id;
         });
+    });
+    describe("/:username", () => {
+      it("GET should return a 200 status, and a JSON object with specified user", () => {
+        return request
+          .get(`/api/users/${userid}`)
+          .expect(200)
+          .then(res => {
+            expect(res.body).to.be.an("object");
+            expect(res.body.user[0].name).to.equal("Tom Tickle");
+          });
+      });
     });
   });
 });

@@ -15,6 +15,12 @@ function changeCommentVoteById(req, res, next) {
     .catch(next);
 }
 
-function deleteComment(req, res, next) {}
+function deleteComment(req, res, next) {
+  comments.findByIdAndRemove(req.params.comment_id).then(deletedComment => {
+    res.send({
+      message: `Comment '${deletedComment.body}' sucessfully deleted`
+    });
+  });
+}
 
 module.exports = { changeCommentVoteById, deleteComment };
