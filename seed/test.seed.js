@@ -52,10 +52,10 @@ function seedUsers(userPath) {
 function seedArticles(articlePath, userId, topicId) {
   return parseData(articlePath).then(articleData => {
     const mappedArticles = articleData.map(article => {
-      const { title, body, topic: belongs_to, votes, created_by } = article;
+      const { title, body, topic, votes, created_by } = article;
       const randomUser = generateRandom(userId, "key");
       article.created_by = userId[randomUser];
-      article.belongs_to = topicId[article.topic];
+      article.topic = topicId[topic];
       return article;
     });
     return Articles.insertMany(mappedArticles).then(articles => {
@@ -72,7 +72,7 @@ function seedComments(articleId, userId) {
   const articleIds = Object.entries(articleId);
   const userIds = Object.entries(userId);
   const completeComments = commentsData.map(comment => {
-    comment.belongs_to = generateRandom(articleId, "value");
+    comment.article = generateRandom(articleId, "value");
     comment.created_by = generateRandom(userId, "value");
     return comment;
   });

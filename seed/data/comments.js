@@ -1,7 +1,7 @@
 const faker = require("faker");
 
 const comments = [];
-num = process.env.NODE_ENV === "test" ? 100 : 500;
+num = process.env.NODE_ENV === "test" ? 50 : 500;
 
 for (let i = 0; i < num; i++) {
   comments.push({

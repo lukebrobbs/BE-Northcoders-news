@@ -10,7 +10,7 @@ const ArticleSchema = new Schema({
     type: String,
     requied: true
   },
-  belongs_to: {
+  topic: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "topics",
     required: true

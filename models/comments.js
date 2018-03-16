@@ -6,7 +6,7 @@ const CommentSchema = new Schema({
     type: String,
     required: true
   },
-  belongs_to: {
+  article: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "articles",
     required: true
