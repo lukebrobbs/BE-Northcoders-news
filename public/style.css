@@ -1,8 +1,7 @@
 body {
-  background-color: rgba(0, 0, 0, 0.879);
-  color: seashell;
-  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  background-color: white;
+  color: black;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   text-align: center;
 }
 a {
@@ -14,13 +13,28 @@ a:hover {
 h2 {
   font-size: 1.5em;
 }
+p {
+  margin-top: -5%;
+}
+mark {
+  background-color: rgba(235, 224, 224, 0.865);
+  color: rgba(200, 32, 32, 0.911);
+}
+h2 mark:hover {
+  font-size: 102%;
+}
+
+.header {
+  background-color: rgba(0, 0, 0, 0.879);
+}
 .Logo {
   width: 500px;
   padding-bottom: 1em;
 }
 .subheading {
   padding-bottom: 2em;
-  font-size: 1.2em;
+  padding-top: 1.5em;
+  font-size: 1.4em;
   text-align: center;
 }
 .body {

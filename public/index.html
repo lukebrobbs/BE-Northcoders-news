@@ -15,28 +15,57 @@
   </div>
   <h2 class="subheading">Welcome to the Northcoders news API. The following endpoints are available:</h2>
   <div class="body">
-    <a href="/api/topics">
-      <h2>GET /api/topics</h2>
-    </a>
+    <h2>GET
+      <mark>/api/topics</mark>
+    </h2>
     <p>Get all the topics</p>
-    <h2>GET /api/topics/:topic/articles</h2>
+    <h2>GET
+      <mark>/api/topics/:topic/articles</mark>
+    </h2>
     <p>Return all the articles for a certain topic</p>
-    <h2>GET /api/articles</h2>
+    <h2>GET
+      <mark>/api/articles</mark>
+    </h2>
     <p>Returns all the articles</p>
-    <h2>GET /api/articles/:article_id/comments</h2>
+    <h2>GET
+      <mark>/api/articles/:article_id/comments</mark>
+    </h2>
     <p>Get all the comments for a individual article</p>
-    <h2>POST /api/articles/:article_id/comments</h2>
-    <p>Add a new comment to an article. This route requires a JSON body with a comment key and value pair e.g: {"comment": "This
-      is my new comment"}</p>
-    <h2>PUT /api/articles/:article_id</h2>
-    <p>Increment or Decrement the votes of an article by one. This route requires a vote query of 'up' or 'down' e.g: http://northcoders-news-api.herokuapp.com/api/articles/:article_id?vote=up</p>
-    <h2>PUT /api/comments/:comment_id</h2>
-    <p>Increment or Decrement the votes of a comment by one. This route requires a vote query of 'up' or 'down' e.g: http://northcoders-news-api.herokuapp.com/api/comments/:comment_id?vote=down</p>
-    <h2>DELETE /api/comments/:comment_id</h2>
+    <h2>POST
+      <mark>/api/articles/:article_id/comments</mark>
+    </h2>
+    <p>Add a new comment to an article. This route requires a JSON
+      <mark>body</mark> with a
+      <mark>comment</mark> key and value pair</p>
+    <p>
+      <mark>e.g: {"comment": "This is my new comment"}</mark>
+    </p>
+    <h2>PUT
+      <mark>/api/articles/:article_id</mark>
+    </h2>
+    <p>Increment or Decrement the votes of an article by one. This route requires a
+      <mark>vote</mark> query of 'up' or 'down'</p>
+    <p>e.g:
+      <mark>http://northcoders-news-api.herokuapp.com/api/articles/:article_id?vote=up</mark>
+    </p>
+    <h2>PUT
+      <mark>/api/comments/:comment_id</mark>
+    </h2>
+    <p>Increment or Decrement the votes of a comment by one. This route requires a vote query of 'up' or 'down'</p>
+    <p>e.g:
+      <mark>http://northcoders-news-api.herokuapp.com/api/comments/:comment_id?vote=down</mark>
+    </p>
+    <h2>DELETE
+      <mark>/api/comments/:comment_id</mark>
+    </h2>
     <p>Deletes a comment</p>
-    <h2>GET /api/users</h2>
+    <h2>GET
+      <mark>/api/users</mark>
+    </h2>
     <p>Returns a JSON object containing all users</p>
-    <h2>GET /api/users/:username</h2>
+    <h2>GET
+      <mark>/api/users/:username</mark>
+    </h2>
     <p>Returns a JSON object with the profile data for the specified user.</p>
   </div>
 </body>

@@ -77,9 +77,6 @@ function seedComments(articleId, userId) {
   return Comments.insertMany(completeComments);
 }
 
-// This should seed your development database using the CSV file data
-// Feel free to use the async library, or native Promises, to handle the asynchronicity of the seeding operations.
-
 function seedDatabase() {
   mongoose
     .connect(DB)
