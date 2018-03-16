@@ -13,9 +13,6 @@ a:hover {
 h2 {
   font-size: 1.5em;
 }
-p {
-  margin-top: -5%;
-}
 mark {
   background-color: rgba(235, 224, 224, 0.865);
   color: rgba(200, 32, 32, 0.911);
