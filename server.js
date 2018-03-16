@@ -5,7 +5,6 @@ const apiRouter = require("./routes/api");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const app = express();
-const config = require("./config");
 const { DB } =
   process.env.NODE_ENV === "production"
     ? process.env
