@@ -91,17 +91,24 @@ function seedDatabase() {
     })
     .then(() => {
       console.log("Database dropped 🗑️");
-      return seedUsers(__dirname + "/data/users.csv");
+      return seedUsers(__dirname + "/testData/testUsers.csv");
     })
     .then(userIds => {
       console.log("Users collection created 👥");
-      return Promise.all([userIds, seedTopics(__dirname + "/data/topics.csv")]);
+      return Promise.all([
+        userIds,
+        seedTopics(__dirname + "/testData/testTopics.csv")
+      ]);
     })
     .then(([userIds, topicIds]) => {
       console.log("Topic collection created! 🔖");
       return Promise.all([
         userIds,
-        seedArticles(__dirname + "/data/articles.csv", userIds, topicIds)
+        seedArticles(
+          __dirname + "/testData/testArticles.csv",
+          userIds,
+          topicIds
+        )
       ]);
     })
     .then(([userIds, articleIds]) => {
