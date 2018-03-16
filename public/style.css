@@ -47,4 +47,8 @@ h2 mark:hover {
     padding-bottom: 0.5em;
     font-size: 1.2em;
   }
+  p {
+    border-bottom: 3px solid black;
+    padding-bottom: 40px;
+  }
 }
