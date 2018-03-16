@@ -41,9 +41,26 @@ function postCommentByArticleId(req, res, next) {
       });
     });
 }
+function changeVoteByArticleId(req, res, next) {
+  if (req.query.vote !== "up" && req.query.vote !== "down") next();
+  const voteChange = req.query.vote === "up" ? 1 : -1;
+  articles
+    .findByIdAndUpdate(req.params.article_id, {
+      $inc: { votes: voteChange }
+    })
+    .populate({ path: "topic", select: "title -_id" })
+    .populate({ path: "created_by", select: "name -_id" })
+    .lean()
+    .then(article => {
+      article.votes += voteChange;
+      res.send({ article });
+    })
+    .catch(next);
+}
 
 module.exports = {
   getArticles,
   getCommentsByArticleId,
-  postCommentByArticleId
+  postCommentByArticleId,
+  changeVoteByArticleId
 };

@@ -2,10 +2,12 @@ const router = require("express").Router();
 const {
   getArticles,
   getCommentsByArticleId,
-  postCommentByArticleId
+  postCommentByArticleId,
+  changeVoteByArticleId
 } = require("../controllers/articles");
 
 router.get("/", getArticles);
+router.put("/:article_id", changeVoteByArticleId);
 router
   .route("/:article_id/comments")
   .get(getCommentsByArticleId)

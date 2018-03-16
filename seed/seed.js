@@ -69,8 +69,6 @@ function seedArticles(articlePath, userId, topicId) {
 }
 
 function seedComments(articleId, userId) {
-  const articleIds = Object.entries(articleId);
-  const userIds = Object.entries(userId);
   const completeComments = commentsData.map(comment => {
     comment.article = generateRandom(articleId, "value");
     comment.created_by = generateRandom(userId, "value");
