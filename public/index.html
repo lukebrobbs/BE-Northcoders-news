@@ -19,26 +19,26 @@
     <h2>GET
       <mark>/api/topics</mark>
     </h2>
-    <p>Get all the topics</p>
+    <p class="line">Get all the topics</p>
     <h2>GET
       <mark>/api/topics/:topic/articles</mark>
     </h2>
-    <p>Return all the articles for a certain topic</p>
+    <p class="line">Return all the articles for a certain topic</p>
     <h2>GET
       <mark>/api/articles</mark>
     </h2>
-    <p>Returns all the articles</p>
+    <p class="line">Returns all the articles</p>
     <h2>GET
       <mark>/api/articles/:article_id/comments</mark>
     </h2>
-    <p>Get all the comments for a individual article</p>
+    <p class="line">Get all the comments for a individual article</p>
     <h2>POST
       <mark>/api/articles/:article_id/comments</mark>
     </h2>
     <p>Add a new comment to an article. This route requires a JSON
       <mark>body</mark> with a
       <mark>comment</mark> key and value pair</p>
-    <p>
+    <p class="line">
       <mark>e.g: {"comment": "This is my new comment"}</mark>
     </p>
     <h2>PUT
@@ -46,28 +46,28 @@
     </h2>
     <p>Increment or Decrement the votes of an article by one. This route requires a
       <mark>vote</mark> query of 'up' or 'down'</p>
-    <p>e.g:
+    <p class="line">e.g:
       <mark>http://northcoders-news-api.herokuapp.com/api/articles/:article_id?vote=up</mark>
     </p>
     <h2>PUT
       <mark>/api/comments/:comment_id</mark>
     </h2>
-    <p>Increment or Decrement the votes of a comment by one. This route requires a vote query of 'up' or 'down'</p>
+    <p class="line">Increment or Decrement the votes of a comment by one. This route requires a vote query of 'up' or 'down'</p>
     <p>e.g:
       <mark>http://northcoders-news-api.herokuapp.com/api/comments/:comment_id?vote=down</mark>
     </p>
     <h2>DELETE
       <mark>/api/comments/:comment_id</mark>
     </h2>
-    <p>Deletes a comment</p>
+    <p class="line">Deletes a comment</p>
     <h2>GET
       <mark>/api/users</mark>
     </h2>
-    <p>Returns a JSON object containing all users</p>
+    <p class="line">Returns a JSON object containing all users</p>
     <h2>GET
       <mark>/api/users/:username</mark>
     </h2>
-    <p>Returns a JSON object with the profile data for the specified user.</p>
+    <p class="line">Returns a JSON object with the profile data for the specified user.</p>
   </div>
 </body>
 

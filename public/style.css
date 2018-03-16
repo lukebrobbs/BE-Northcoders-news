@@ -39,6 +39,9 @@ h2 mark:hover {
   grid-row-gap: 10px;
 }
 @media only screen and (max-width: 500px) {
+  p {
+    padding-bottom: 40px;
+  }
   .Logo {
     width: 300px;
     height: 80px;
@@ -47,8 +50,7 @@ h2 mark:hover {
     padding-bottom: 0.5em;
     font-size: 1.2em;
   }
-  p {
+  .line {
     border-bottom: 3px solid black;
-    padding-bottom: 40px;
   }
 }
