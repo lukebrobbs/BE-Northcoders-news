@@ -1,5 +1,6 @@
 const articles = require("../models/articles");
 const comments = require("../models/comments");
+const user = require("../models/users");
 
 function getArticles(req, res, next) {
   articles
@@ -22,5 +23,27 @@ function getCommentsByArticleId(req, res, next) {
     })
     .catch(next);
 }
+function postCommentByArticleId(req, res, next) {
+  const newComment = {
+    body: req.body.comment,
+    article: req.params.article_id
+  };
 
-module.exports = { getArticles, getCommentsByArticleId };
+  user
+    .findOne()
+    .then(user => (newComment.created_by = user._id))
+    .then(() => {
+      return comments.create(newComment);
+    })
+    .then(comment => {
+      res.status(201).send({
+        Message: `Comment: '${comment.body}', successfully added`
+      });
+    });
+}
+
+module.exports = {
+  getArticles,
+  getCommentsByArticleId,
+  postCommentByArticleId
+};

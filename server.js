@@ -17,11 +17,13 @@ mongoose
 app.use(bodyParser.json());
 
 app.use(express.static("public"));
+
 app.use("/api", apiRouter);
 
 app.use("/*", (req, res) => {
   res.status(404).send({ Error: "Page not found" });
 });
+
 app.use((err, req, res, next) => {
   console.log(err);
   res.status(500).send({ Error: "Internal Server Error" });

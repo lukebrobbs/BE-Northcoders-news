@@ -83,6 +83,7 @@ function seedComments(articleId, userId) {
 // Feel free to use the async library, or native Promises, to handle the asynchronicity of the seeding operations.
 
 function seedDatabase() {
+  const data = {};
   mongoose
     .connect(DB)
     .then(() => {
