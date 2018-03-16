@@ -6,12 +6,15 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const app = express();
 const config = require("./config");
-const db = config.DB[process.env.NODE_ENV] || process.env.DB;
+const { DB } =
+  process.env.NODE_ENV === "production"
+    ? process.env
+    : require("./config")[process.env.NODE_ENV];
 mongoose.Promise = Promise;
 
 mongoose
-  .connect(db)
-  .then(() => console.log("successfully connected to", db))
+  .connect(DB)
+  .then(() => console.log("successfully connected to", DB))
   .catch(err => console.log("connection failed", err));
 
 app.use(bodyParser.json());

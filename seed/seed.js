@@ -1,5 +1,8 @@
 process.env.NODE_ENV = process.env.NODE_ENV || "dev";
-const DB = require("../config").DB[process.env.NODE_ENV];
+const { DB } =
+  process.env.NODE_ENV === "production"
+    ? process.env
+    : require("../config")[process.env.NODE_ENV];
 const { Users, Articles, Comments, Topics } = require("../models/models");
 const mongoose = require("mongoose");
 mongoose.Promise = Promise;

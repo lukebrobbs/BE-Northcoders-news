@@ -1,5 +1,4 @@
-process.env.NODE_ENV = process.env.NODE_ENV || "dev";
-const DB = require("../config").DB[process.env.NODE_ENV];
+const { DB } = require("../config")["test"];
 const { Users, Articles, Comments, Topics } = require("../models/models");
 const mongoose = require("mongoose");
 mongoose.Promise = Promise;
