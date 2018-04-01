@@ -1,10 +1,8 @@
-const topic = require("../models/topics");
-const articles = require("../models/articles");
-const users = require("../models/users");
+const Topics = require("../models/topics");
+const Articles = require("../models/articles");
 
 function getTopics(req, res, next) {
-  topic
-    .find()
+  Topics.find()
     .then(topics => {
       res.send({ topics });
     })
@@ -12,16 +10,14 @@ function getTopics(req, res, next) {
 }
 
 function getArticlesByTopic(req, res, next) {
-  topic
-    .find({ slug: req.params.topic })
+  Topics.find({ slug: req.params.topic })
     .then(topic => {
-      return articles
-        .find({ topic: topic[0]._id })
+      return Articles.find({ topic: topic[0]._id })
         .populate({ path: "topic", select: "title -_id" })
         .populate({ path: "created_by", select: "name -_id" });
     })
-    .then(Articles => {
-      res.send({ Articles });
+    .then(articles => {
+      res.send({ articles });
     })
     .catch(next);
 }

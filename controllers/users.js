@@ -1,8 +1,7 @@
-const users = require("../models/users");
+const Users = require("../models/users");
 
 function getUsers(req, res, next) {
-  users
-    .find()
+  Users.find()
     .then(users => {
       res.send({ users });
     })
@@ -10,8 +9,7 @@ function getUsers(req, res, next) {
 }
 
 function getUserById(req, res, next) {
-  users
-    .find({ _id: req.params.user_id })
+  Users.find({ _id: req.params.user_id })
     .then(user => {
       res.send({ user });
     })

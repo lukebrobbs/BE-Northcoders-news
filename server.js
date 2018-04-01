@@ -26,8 +26,10 @@ app.use("/*", (req, res) => {
 });
 
 app.use((err, req, res, next) => {
-  console.log(err);
-  res.status(500).send({ Error: "Internal Server Error" });
+  console.log(err.status);
+  if (err.status === 400)
+    res.status(400).send({ Error: { "Bad request": err.message } });
+  res.status(500).send({ error: "Internal server error", details: err });
 });
 
 module.exports = app;
