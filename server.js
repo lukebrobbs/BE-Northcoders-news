@@ -3,6 +3,7 @@ const express = require("express");
 const apiRouter = require("./routes/api");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
+const cors = require("cors");
 const app = express();
 const { DB } =
   process.env.NODE_ENV === "production"
@@ -18,15 +19,7 @@ mongoose
 app.use(bodyParser.json());
 
 app.use(express.static("public"));
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Access-Control-Allow-Methods",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  next();
-});
+app.use(cors());
 app.use("/api", apiRouter);
 
 app.use("/*", (req, res) => {
