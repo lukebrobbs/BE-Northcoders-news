@@ -5,7 +5,7 @@ const User = require("../models/users");
 function getArticles(req, res, next) {
   Articles.find()
     .populate({ path: "topic", select: "title -_id" })
-    .populate({ path: "created_by", select: "name -_id" })
+    .populate({ path: "created_by", select: "username -_id" })
     .then(articles => {
       res.send({ articles });
     })
@@ -15,7 +15,7 @@ function getArticles(req, res, next) {
 function getCommentsByArticleId(req, res, next) {
   Comments.find({ article: req.params.article_id })
     .populate({ path: "article", select: "title -_id" })
-    .populate({ path: "created_by", select: "name -_id" })
+    .populate({ path: "created_by", select: "username -_id" })
     .then(comments => {
       res.send({ comments });
     })
@@ -55,7 +55,7 @@ function changeVoteByArticleId(req, res, next) {
     { new: true }
   )
     .populate({ path: "topic", select: "title -_id" })
-    .populate({ path: "created_by", select: "name -_id" })
+    .populate({ path: "created_by", select: "username -_id" })
     .lean()
     .then(article => {
       res.send({ article });
