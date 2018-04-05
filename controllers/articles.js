@@ -5,7 +5,7 @@ const User = require("../models/users");
 function getArticles(req, res, next) {
   Articles.find()
     .populate({ path: "topic", select: "title -_id" })
-    .populate({ path: "created_by", select: "username -_id" })
+    .populate("created_by")
     .then(articles => {
       res.send({ articles });
     })
