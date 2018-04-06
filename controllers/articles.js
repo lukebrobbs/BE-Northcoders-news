@@ -12,6 +12,14 @@ function getArticles(req, res, next) {
     .catch(next);
 }
 
+function getArticleById(req, res, next) {
+  Articles.find({ _id: req.params.article_id })
+    .then(article => {
+      res.send({ article });
+    })
+    .catch(next);
+}
+
 function getCommentsByArticleId(req, res, next) {
   Comments.find({ article: req.params.article_id })
     .populate({ path: "article", select: "title -_id" })
@@ -67,5 +75,6 @@ module.exports = {
   getArticles,
   getCommentsByArticleId,
   postCommentByArticleId,
-  changeVoteByArticleId
+  changeVoteByArticleId,
+  getArticleById
 };

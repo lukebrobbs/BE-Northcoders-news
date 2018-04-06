@@ -3,11 +3,16 @@ const {
   getArticles,
   getCommentsByArticleId,
   postCommentByArticleId,
-  changeVoteByArticleId
+  changeVoteByArticleId,
+  getArticleById
 } = require("../controllers/articles");
 
 router.get("/", getArticles);
 router.put("/:article_id", changeVoteByArticleId);
+router
+  .route("/:article_id")
+  .get(getArticleById)
+  .put(changeVoteByArticleId);
 router
   .route("/:article_id/comments")
   .get(getCommentsByArticleId)
