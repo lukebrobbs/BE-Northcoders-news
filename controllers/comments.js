@@ -9,7 +9,7 @@ function changeCommentVoteById(req, res, next) {
     { new: true }
   )
     .populate({ path: "article", select: "title -_id" })
-    .populate({ path: "created_by", select: "name -_id" })
+    .populate("created_by")
     .lean()
     .then(comment => {
       res.send({ comment });
