@@ -14,7 +14,7 @@ function getArticlesByTopic(req, res, next) {
     .then(topic => {
       return Articles.find({ topic: topic[0]._id })
         .populate({ path: "topic", select: "title -_id" })
-        .populate({ path: "created_by", select: "name -_id" });
+        .populate("created_by");
     })
     .then(articles => {
       res.send({ articles });
