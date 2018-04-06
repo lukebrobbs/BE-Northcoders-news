@@ -14,6 +14,7 @@ function getArticles(req, res, next) {
 
 function getArticleById(req, res, next) {
   Articles.find({ _id: req.params.article_id })
+    .populate("created_by")
     .then(article => {
       res.send({ article });
     })
