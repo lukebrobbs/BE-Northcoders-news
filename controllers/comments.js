@@ -1,7 +1,6 @@
 const Comments = require("../models/comments.js");
 
 function changeCommentVoteById(req, res, next) {
-  // if (req.query.vote !== "up" && req.query.vote !== "down") next();
   const voteChange = req.query.vote === "up" ? 1 : -1;
   Comments.findByIdAndUpdate(
     req.params.comment_id,
